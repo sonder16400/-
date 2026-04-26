@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>高校技能交换与项目协同平台 - 2.0版</title>
+    <style>
+        :root {
+            --primary-dark: #2c3e50;
+            --primary-blue: #3498db;
+            --success-green: #27ae60;
+            --accent-orange: #e67e22;
+            --bg-light: #f8f9fa;
+            --white: #ffffff;
+        }
+
+        body { font-family: 'PingFang SC', 'Microsoft YaHei', sans-serif; margin: 0; background: var(--bg-light); color: #333; scroll-behavior: smooth; }
+        
+        /* 导航体系 */
+        header { background: var(--primary-dark); padding: 0 5%; height: 70px; display: flex; justify-content: space-between; align-items: center; position: sticky; top: 0; z-index: 1000; box-shadow: 0 2px 10px rgba(0,0,0,0.2); }
+        .logo { color: white; font-size: 1.4rem; font-weight: bold; letter-spacing: 1px; }
+        nav { display: flex; gap: 30px; }
+        nav a { color: rgba(255,255,255,0.8); text-decoration: none; font-size: 1rem; transition: 0.3s; padding: 10px 5px; border-bottom: 2px solid transparent; }
+        nav a:hover, nav a.active { color: var(--primary-blue); border-bottom-color: var(--primary-blue); }
+
+        .container { max-width: 1200px; margin: 0 auto; padding: 40px 20px; }
+        section { padding: 60px 0; border-bottom: 1px solid #ddd; }
+        .section-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 30px; }
+        .section-title { font-size: 1.8rem; border-left: 6px solid var(--primary-blue); padding-left: 15px; }
+
+        /* AI 跨学科术语翻译器 [cite: 9, 11] */
+        .ai-translator { background: var(--white); padding: 30px; border-radius: 15px; box-shadow: 0 5px 20px rgba(0,0,0,0.05); margin-bottom: 40px; }
+        .translator-box { display: grid; grid-template-columns: 1fr auto 1fr; gap: 20px; align-items: center; margin-top: 20px; }
+        textarea { width: 100%; height: 120px; padding: 15px; border: 1.5px solid #eee; border-radius: 10px; resize: none; font-size: 1rem; box-sizing: border-box; }
+        .trans-btn { background: var(--primary-blue); color: white; border: none; padding: 15px 25px; border-radius: 50%; cursor: pointer; font-size: 1.2rem; }
+
+        /* 卡片通用样式  */
+        .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(350px, 1fr)); gap: 25px; }
+        .card { background: white; padding: 25px; border-radius: 12px; border: 1px solid #eee; position: relative; transition: 0.3s; }
+        .card:hover { transform: translateY(-5px); box-shadow: 0 10px 25px rgba(0,0,0,0.1); }
+        .status-badge { position: absolute; top: 15px; right: 15px; padding: 4px 12px; border-radius: 20px; font-size: 0.75rem; background: #e8f4fd; color: var(--primary-blue); }
+        .urgent { background: #fff5f5; color: #e74c3c; border: 1px solid #ffc1c1; }
+
+        /* 实时发帖/聊天区 */
+        .chat-section { background: #fff; padding: 30px; border-radius: 15px; }
+        .post-input { display: flex; gap: 15px; margin-bottom: 30px; }
+        .post-list { max-height: 400px; overflow-y: auto; }
+        .post-item { padding: 15px; border-bottom: 1px solid #f0f0f0; display: flex; gap: 15px; }
+        .avatar { width: 45px; height: 45px; border-radius: 50%; background: #ddd; flex-shrink: 0; }
+
+        .btn-action { background: var(--primary-blue); color: white; border: none; padding: 10px 20px; border-radius: 6px; cursor: pointer; width: 100%; margin-top: 15px; }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="logo">EDU-COLLAB 2.0</div>
+        <nav>
+            <a href="#home" class="active">首页看板</a>
+            <a href="#project-hall">项目大厅</a>
+            <a href="#roadshow">线下路演</a>
+            <a href="#community">实时交流区</a>
+        </nav>
+        <button class="auth-btn" style="background:#27ae60; color:white; border:none; padding:8px 18px; border-radius:4px; cursor:pointer;">已通过校园认证</button>
+    </header>
+
+    <div class="container">
+        
+        <section id="home">
+            <div class="section-header">
+                <h2 class="section-title">实时等待组队看板</h2>
+                <span style="color:#666; font-size:0.9rem;">● 当前在线: 1,248 位同学</span>
+            </div>
+            <div class="grid">
+                <div class="card">
+                    <span class="status-badge urgent">急寻·待组队</span>
+                    <p style="font-weight:bold; color:var(--accent-orange);">[需求] 建筑设计渲染</p>
+                    <h3>寻找能做Rhino建模的同学</h3>
+                    <p style="font-size:0.9rem; color:#666;"><strong>发起人:</strong> 园林系·张同学 (信誉分: 98)</p>
+                    <p>我可以用“深度文献检索与综述撰写”能力进行交换，急需帮做期末大作业渲染。</p>
+                    <button class="btn-action">立即联系</button>
+                </div>
+                <div class="card">
+                    <span class="status-badge">等待匹配</span>
+                    <p style="font-weight:bold; color:var(--success-green);">[提供] 视频剪辑/后期</p>
+                    <h3>提供 AE 特效与 PR 剪辑支持</h3>
+                    <p style="font-size:0.9rem; color:#666;"><strong>提供人:</strong> 新传学院·陈同学 (实名认证)</p>
+                    <p>有3年短视频运营经验，想交换“Python 基础教学”或项目合作机会。</p>
+                    <button class="btn-action">申请交换</button>
+                </div>
+            </div>
+        </section>
+
+        <section id="translator">
+            <div class="ai-translator">
+                <h2 class="section-title">AI 跨学科术语转译 (降解沟通耗散)</h2>
+                <p style="color:#666; margin-bottom:20px;">跨专业合作总是听不懂？让 AI 帮您翻译成“人话”或“本专业话”。</p>
+                <div class="translator-box">
+                    <textarea id="sourceText" placeholder="粘贴其他专业的‘黑话’...&#10;例如：(计算机) 我们需要实现一个具有高可用性的分布式状态机。"></textarea>
+                    <button class="trans-btn" onclick="simulateTranslate()">⇄</button>
+                    <textarea id="targetText" readonly placeholder="点击中间按钮查看转译结果..." style="background:#f9f9f9; color:var(--primary-blue);"></textarea>
+                </div>
+            </div>
+        </section>
+
+        <section id="project-hall">
+            <div class="section-header">
+                <h2 class="section-title">项目大厅</h2>
+                <a href="#" style="color:var(--primary-blue); text-decoration:none;">查看全部 42 个项目 ></a>
+            </div>
+            <div class="grid">
+                <div class="card" style="border-top: 4px solid var(--primary-blue);">
+                    <div style="font-size:0.8rem; color:#999; margin-bottom:10px;">项目编号: #20260425</div>
+                    <h3>智能校园节能监控系统</h3>
+                    <p><strong>招募需求:</strong> 物联网工程(1/2) | 市场营销(0/1) | UI设计(已满)</p>
+                    <div style="background:#eee; height:8px; border-radius:4px; margin:15px 0;">
+                        <div style="background:var(--primary-blue); width:66%; height:100%; border-radius:4px;"></div>
+                    </div>
+                    <p style="font-size:0.85rem; color:#777;">项目进度: 66% (硬件开发阶段)</p>
+                    <button class="btn-action">查看任务详情 & 申请加入</button>
+                </div>
+            </div>
+        </section>
+
+        <section id="roadshow">
+            <div class="section-header">
+                <h2 class="section-title">线下路演 & 创意工坊</h2>
+            </div>
+            <div style="display:flex; gap:25px;">
+                <div style="flex:1; background:linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('https://via.placeholder.com/600x200') center/cover; padding:40px; border-radius:15px; color:white;">
+                    <h3>第 12 届“创梦校园”路演·本周五</h3>
+                    <p>地点: 图书馆三楼报告厅 | 时间: 19:00 - 21:30</p>
+                    <p>已有 12 个跨专业团队报名展示，现场提供线下身份认证与极速组队通道 。</p>
+                    <button style="background:white; color:var(--primary-dark); border:none; padding:10px 25px; border-radius:5px; cursor:pointer; font-weight:bold;">我要报名路演</button>
+                </div>
+            </div>
+        </section>
+
+        <section id="community">
+            <div class="chat-section">
+                <h2 class="section-title">实时交流广场</h2>
+                <div class="post-input">
+                    <input type="text" placeholder="分享你的技能或项目想法..." style="flex:1; padding:12px; border:1px solid #ddd; border-radius:5px;">
+                    <button style="background:var(--primary-dark); color:white; border:none; padding:0 30px; border-radius:5px; cursor:pointer;">发布动态</button>
+                </div>
+                <div class="post-list">
+                    <div class="post-item">
+                        <div class="avatar" style="background:#3498db; display:flex; align-items:center; justify-content:center; color:white;">计</div>
+                        <div>
+                            <div style="font-weight:bold;">李同学 <span style="font-size:0.8rem; color:#999; font-weight:normal;">3分钟前</span></div>
+                            <p style="margin:5px 0;">刚跟隔壁美院的同学对接成功！平台的“术语翻译器”立功了，沟通效率直接起飞，赞一个！</p>
+                        </div>
+                    </div>
+                    <div class="post-item">
+                        <div class="avatar" style="background:#e67e22; display:flex; align-items:center; justify-content:center; color:white;">艺</div>
+                        <div>
+                            <div style="font-weight:bold;">王同学 <span style="font-size:0.8rem; color:#999; font-weight:normal;">15分钟前</span></div>
+                            <p style="margin:5px 0;">有没有经管的大佬带带我？我有一系列手绘IP，想做下商业化分析，有人合作吗？</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <footer style="text-align:center; padding:40px; background:#2c3e50; color:#bdc3c7; font-size:0.9rem;">
+        基于校园强信任背书与局部高浓度网络效应构建 [cite: 7, 9]<br>
+        © 2026 高校技能交换与项目协同平台 | 跨学科创新实验项目
+    </footer>
+
+    <script>
+        // AI 翻译模拟功能 [cite: 9, 11]
+        function simulateTranslate() {
+            const input = document.getElementById('sourceText').value;
+            const output = document.getElementById('targetText');
+            
+            if(input.includes('分布式状态机')) {
+                output.value = "[转译为管理学/通俗话]: 我们要建立一套‘多方实时同步的记账/任务单’。即便有一两个同学掉线了，全组的项目进度和状态依然是准确、一致的，不会乱套。";
+            } else if(input.includes('RESTful API')) {
+                output.value = "[转译为通俗话]: 这是一种标准的‘对话规矩’。就像给前端和后端发了一本同款字典，大家查字典说话，沟通就绝对不会走样。";
+            } else {
+                output.value = "AI 正在理解中... 已为您降解术语耗散：该描述的核心意图是‘跨部门数据对接与同步协作’。";
+            }
+        }
+
+        // 导航激活状态监听
+        window.addEventListener('scroll', () => {
+            const sections = document.querySelectorAll('section');
+            const navLinks = document.querySelectorAll('nav a');
+            let current = "";
+
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                if (pageYOffset >= sectionTop - 100) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href').includes(current)) {
+                    link.classList.add('active');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
